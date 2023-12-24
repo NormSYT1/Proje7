@@ -1,2 +1,2 @@
 # Proje7
- 7.Hafta Projesi
+Üretken Akademi 7.Hafta Projesi
