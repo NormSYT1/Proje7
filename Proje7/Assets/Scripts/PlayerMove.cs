@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 public class PlayerMove : MonoBehaviour
 {
     private Animator animator;
@@ -16,7 +17,7 @@ public class PlayerMove : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)) 
         {
             animator.SetBool("isWalking", true);
             transform.Translate(new Vector3(0, 0, 2f) * Time.deltaTime);
@@ -25,8 +26,9 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetBool("isWalking", false);
         }
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W)) 
         {
+            animator.SetBool("isWalking", false);
             animator.SetBool("isRunning", true);
             transform.Translate(new Vector3(0, 0, 5f) * Time.deltaTime);
         }

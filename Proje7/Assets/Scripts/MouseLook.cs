@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    private float sensitivity = 400f;
-    private float xRotation = 0f;
-    public Transform playerBody;
+    float xRot = 0f;
+    float yRot = 0f;
+    public float sensitivity = 100f;
+    public GameObject player;
     void Start()
     {
         Cursor.visible = false;
     }
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
-        xRotation = -mouseY;   
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(30f, xRotation, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
-        
+        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivity;
+        xRot -= mouseY;
+        yRot += mouseY;
+        xRot = Mathf.Clamp(xRot, 0, 10f);
+        yRot = Mathf.Clamp(xRot, -15f, 10f);
+        transform.localRotation = Quaternion.Euler(xRot, 0, 0);
+        player.transform.Rotate(Vector3.up * mouseX);
     }
 }
